@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "gy-dynamic-form": [
+        "dist/gy-dynamic-form"
+      ],
+      "gy-dynamic-form/*": [
+        "dist/gy-dynamic-form/*"
+      ]
+    }
   }
 }

@@ -134,6 +134,41 @@
           }
         }
       }
+    },
+    "gy-dynamic-form": {
+      "root": "projects/gy-dynamic-form",
+      "sourceRoot": "projects/gy-dynamic-form/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/gy-dynamic-form/tsconfig.lib.json",
+            "project": "projects/gy-dynamic-form/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/gy-dynamic-form/src/test.ts",
+            "tsConfig": "projects/gy-dynamic-form/tsconfig.spec.json",
+            "karmaConfig": "projects/gy-dynamic-form/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/gy-dynamic-form/tsconfig.lib.json",
+              "projects/gy-dynamic-form/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "erp-demo"
