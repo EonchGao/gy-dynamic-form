@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FieldConfig } from './interface/fieldConfig';
@@ -8,21 +8,25 @@ import { CheckboxValuePosterService } from './service/checkbox-value-poster.serv
 @Component({
   selector: 'gy-dynamic-form',
   template: `
-    <form (ngSubmit)="handleSubmit($event)" [formGroup]="form" class="dynamic-form">
+    <form (ngSubmit)="handleSubmit($event)" [formGroup]="form">
+      <ng-content></ng-content>
       <ng-container *ngFor="let config of configs" appDynamicField [config]="config" [group]="form">
       </ng-container>
+      
     </form>
   `,
   styles: []
 })
-export class GyDynamicFormComponent implements OnInit, OnChanges {
+export class GyDynamicFormComponent implements OnInit, OnChanges, OnDestroy {
   form: FormGroup;
-
+  sub: Subscription;
   @Input()
   configs: FieldConfig[];
 
   @Output()
   submit = new EventEmitter<any>();
+  @Output()
+  panel = new EventEmitter<void>();
 
   get controlConfigs() { return this.configs.filter(item => item.type !== 'button'); }
   get value() { return this.form.value; }
@@ -37,7 +41,11 @@ export class GyDynamicFormComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.form = this.creatForm();
+    this.sub = this.service.subject.subscribe(_ => {
+      this.panel.emit();
+    });
   }
+
 
   ngOnChanges() {
     console.log(1);
@@ -99,5 +107,11 @@ export class GyDynamicFormComponent implements OnInit, OnChanges {
 
   setValue(name: string, value: any) {
     this.form.controls[name].setValue(value);
+  }
+
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 }

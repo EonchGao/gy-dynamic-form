@@ -1,3 +1,4 @@
-<div  class="form-button">
-  <button type="submit" [disabled]="config.disabled">{{config.label}}</button>
+<div class="center">
+  <button type="button" class="btn btn-secondary btn-1" (click)="panel()">取消</button>
+  <button type="submit" class="btn btn-primary btn-2" [disabled]="config.disabled|| group.invalid">{{config.label}}</button>
 </div>

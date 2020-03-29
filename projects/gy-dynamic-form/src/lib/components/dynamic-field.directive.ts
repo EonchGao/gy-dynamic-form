@@ -7,6 +7,7 @@ import {
     ComponentRef,
     ViewContainerRef,
     ComponentFactoryResolver,
+    ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
@@ -38,6 +39,7 @@ export class DynamicFieldDirective implements OnChanges, OnInit {
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private viewContainerRef: ViewContainerRef,
+        private cd:ChangeDetectorRef
     ) { }
 
     ngOnChanges() {

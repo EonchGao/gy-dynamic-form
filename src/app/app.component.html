@@ -1,7 +1,14 @@
-<div class="configure">
-  <span *ngFor="let item of formsCanBeSelect" (click)="changeForm(item)">{{item}}</span>
-</div>
+
 <div class="app">
-  <gy-dynamic-form #dynamicForm [configs]="formFieldConfigs" (submit)="onSubmit($event)">
+  <gy-dynamic-form #dynamicForm [configs]="formFieldConfigs" (submit)="onSubmit($event)" (panel)="panel()">
+    <div class="form-group">
+      <div class="row">
+        <span class="col-6">保险权益</span>
+        <span class="col-6">
+          <span class="text-danger">*</span>
+          <span>定损金额（元）</span>
+        </span>
+      </div>
+    </div>
   </gy-dynamic-form>
 </div>

@@ -10,6 +10,8 @@ import { FormRadioComponent } from './components/form-radio/form-radio.component
 import { FormCheckboxComponent } from './components/form-checkbox/form-checkbox.component';
 import { CheckboxValuePosterService } from './service/checkbox-value-poster.service';
 
+import { ZrValidationMessageModule } from 'zr-validation-message';
+
 @NgModule({
   declarations: [
     GyDynamicFormComponent,
@@ -23,6 +25,7 @@ import { CheckboxValuePosterService } from './service/checkbox-value-poster.serv
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    ZrValidationMessageModule
   ],
   exports: [
     GyDynamicFormComponent,

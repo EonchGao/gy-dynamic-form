@@ -91,5 +91,33 @@ export const formsPool: { [formType: string]: FieldConfig[] } = {
             type: 'button',
             disabled: false,
         }
+    ],
+    erp: [
+        {
+            type: 'input',
+            label: '姓名',
+            name: 'name',
+            attrType: 'string',
+            required: true,
+            placeholder: '请输入',
+            disabled: false,
+            validations: [Validators.required]
+        },
+        {
+            type: 'input',
+            label: '电话',
+            name: 'phone',
+            placeholder: '请输入',
+            disabled: false,
+            validations: [Validators.required, Validators.pattern(/^123$/)],
+            validationMessages: '只能为数字123'
+        },
+
+        {
+            label: '确定',
+            name: 'submit',
+            type: 'button',
+            disabled: false,
+        }
     ]
 };

@@ -1,6 +1,16 @@
-<div [formGroup]="group">
-  <label>{{config.label}}</label>
-  <input type="text" [formControlName]="config.name" [placeholder]="config.placeholder">
-  
-</div>
+<ng-container [formGroup]="group">
 
+  <div class="row">
+    <label class="col-6">{{config.label}}
+      <span *ngIf="config.required" class="text-danger">*</span>
+    </label>
+
+    <div class="col-6">
+      <input [type]="config.attrType" class="form-control" [formControlName]="config.name"
+        [placeholder]="config.placeholder">
+      <zr-validation-message [control]="group.controls[config.name]" [label]="config.label"
+        [validationMessages]="{pattern:config.validationMessages}"></zr-validation-message>
+    </div>
+  </div>
+
+</ng-container>
