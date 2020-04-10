@@ -17,6 +17,5 @@ export class FormInputComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.group)
   }
 }

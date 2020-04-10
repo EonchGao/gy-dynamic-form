@@ -48,7 +48,6 @@ export class GyDynamicFormComponent implements OnInit, OnChanges, OnDestroy {
 
 
   ngOnChanges() {
-    console.log(1);
     if (this.form) {
       this.service.clearValue();
       const setControls = Object.keys(this.form['controls']);
